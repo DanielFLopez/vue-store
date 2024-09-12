@@ -1,0 +1,28 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: ^ecommerce-frontend/|node_modules/ # Exclude frontend and node_modules
+      - id: end-of-file-fixer
+        exclude: ^ecommerce-frontend/|node_modules/ # Exclude frontend and node_modules
+      - id: check-yaml
+        exclude: node_modules/ # Exclude node_modules everywhere
+      - id: check-added-large-files
+        exclude: ^ecommerce-frontend/|node_modules/ # Exclude frontend and node_modules
+      - id: debug-statements
+        exclude: ^ecommerce-frontend/|node_modules/ # Exclude frontend and node_modules
+
+  - repo: https://github.com/psf/black
+    rev: 24.2.0
+    hooks:
+      - id: black
+        args: ["--line-length", "120"]
+        exclude: ^ecommerce-frontend/|node_modules/|migrations/ # Exclude frontend and node_modules
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        args: ["--profile", "black"]
+        exclude: ^ecommerce-frontend/|node_modules/ # Exclude frontend and node_modules

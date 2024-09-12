@@ -1,0 +1,13 @@
+{
+    "extends": [
+      "eslint:recommended",
+      "plugin:vue/vue3-recommended",
+      "prettier"               // Disables conflicting ESLint rules with Prettier
+    ],
+    "plugins": ["prettier"],
+    "rules": {
+      "prettier/prettier": "error"  // Throw an error if code doesn't follow Prettier rules
+    }
+  }
+  
+  
