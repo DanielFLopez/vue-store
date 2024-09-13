@@ -10,7 +10,7 @@
         </router-link>
       </div>
       <div>
-        <span v-if="isAuthenticated">
+        <span class="text-white" v-if="isAuthenticated && userProfile">
           Welcome, {{ userProfile.username }}!
         </span>
 
@@ -25,7 +25,7 @@
         <button
           v-if="isAuthenticated"
           class="text-white ml-4"
-          @click="logout"
+          @click="handleLogout"
         >
           Logout
         </button>
@@ -38,15 +38,28 @@
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
+  data() {
+    return {
+      logoutInProgress: false,
+    };
+  },
   computed: {
     ...mapGetters(['isAuthenticated', 'userProfile']),
   },
   methods: {
     ...mapActions(['logout']),
+    async handleLogout() {
+      try {
+        if (!this.isAuthenticated || this.logoutInProgress) return;
 
-    logout() {
-      this.logout();
-      this.$router.push('/login');
+        this.logoutInProgress = true; 
+        await this.logout(); 
+        this.$router.push('/login');
+      } catch (error) {
+        console.error('Error during logout:', error);
+      } finally {
+        this.logoutInProgress = false;
+      }
     },
   },
 };
