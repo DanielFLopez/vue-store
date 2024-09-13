@@ -37,7 +37,12 @@
           >
         </div>
 
-        <p v-if="emailError" class="text-red-500 text-center mb-4">{{ emailError }}</p>
+        <p
+          v-if="emailError"
+          class="text-red-500 text-center mb-4"
+        >
+          {{ emailError }}
+        </p>
 
         <!-- Password Input -->
         <div class="mb-4">
@@ -83,7 +88,6 @@
         <button
           type="submit"
           class="w-full bg-blue-500 text-white p-3 rounded-md font-semibold hover:bg-blue-600 transition-colors"
-
         >
           Register
         </button>

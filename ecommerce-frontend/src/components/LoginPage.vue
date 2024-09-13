@@ -41,7 +41,7 @@
         >
           Login
         </button>
-        
+
         <!-- Button to Registration Page -->
         <div class="mt-4 text-center">
           <router-link
@@ -57,8 +57,6 @@
 </template>
 
 <script>
-import api from '@/services/api';
-// Import API for making HTTP requests
 export default {
   data() {
     return {
@@ -69,21 +67,18 @@ export default {
   methods: {
     async login() {
       try {
-        // Make a POST request to authenticate the user
-        const response = await api.post('api-token-auth/', {
+        await this.$store.dispatch('login', {
           username: this.username,
           password: this.password,
         });
 
-        // Store the authentication token in localStorage
-        localStorage.setItem('token', response.data.token);
-
-        // Redirect the user to the '/products' route after successful login
         this.$router.push('/products');
       } catch (error) {
-        console.error('Failed to login', error);
+        console.error('Login failed:', error);
+        alert('Login failed, please check your credentials');
       }
     },
   },
 };
+
 </script>

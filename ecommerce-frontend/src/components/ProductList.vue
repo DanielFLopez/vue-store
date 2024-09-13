@@ -23,8 +23,8 @@ export default {
   },
   async created() {
     try {
-      const response = await api.get('products/');
-      this.products = response.data;
+      const response = await api.get('products');
+      this.products = response.data || [];
     } catch (error) {
       console.error('Failed to fetch products', error);
     }
